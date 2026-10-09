@@ -1,0 +1,14 @@
+{
+  "model_id": "BAAI/bge-small-zh-v1.5",
+  "artifact_repository": "Qdrant/bge-small-zh-v1.5",
+  "artifact_revision": "46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59",
+  "format": "onnx",
+  "dimensions": 512,
+  "model_file": "model_optimized.onnx",
+  "model_sha256": "1294ea4b6331115a353d81f96b85e8c8d7fdcc284453d5b2fab5b016230aad38",
+  "source_license": "mit",
+  "required_files": [
+    "model_optimized.onnx", "config.json", "ort_config.json", "special_tokens_map.json",
+    "tokenizer.json", "tokenizer_config.json", "vocab.txt"
+  ]
+}

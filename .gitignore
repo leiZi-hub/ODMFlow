@@ -1,0 +1,37 @@
+# 环境凭据只保留公开模板。
+.env
+.env.*
+!.env.example
+application.toml
+*.backup*
+
+# 不发布私人工作文档、编辑器状态及数据。
+docs/
+.codex/
+codex.md
+AGENTS.md
+.idea/
+.vscode/
+data/
+uploads/
+models/
+cache/
+*.db
+*.db-*
+*.sqlite*
+*.log
+
+# 依赖、缓存及构建产物。
+.venv/
+node_modules/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.pytest-basetemp*/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.tsbuildinfo

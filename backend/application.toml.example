@@ -1,0 +1,89 @@
+# 应用配置模板：在后端根目录复制为 application.toml；实际文件不提交，修改后重启。
+# 连接串、API Key、模型名与资源路径只放 .env，不填入本模板。
+
+# 模型请求策略，不包含模型凭证。
+[model]
+# 单次SDK网络等待（秒），有限正数；不是整轮总耗时。
+request_timeout_seconds = 120
+
+# Agent 整轮运行策略。
+[agent]
+# 整轮硬截止（秒），含记忆/多次模型/工具，必须不小于单次请求等待。
+turn_timeout_seconds = 300
+
+# 图内任务预算，只允许下调硬上限。
+[agent.tasks]
+# 整轮任务上限1–4，修正不重置已消耗额度。
+max_tasks = 4
+# 实际能力调用上限1–4，包含获准只读重试。
+max_capability_calls = 4
+# 图内Chat上限2–4，预留最终回答；记忆另计但同受整轮截止。
+max_model_calls = 4
+# 全轮计划修正上限0–1，不能无限重新规划。
+max_replans = 1
+# 全轮参数纠正上限0–1，不得补造业务事实。
+max_argument_repairs = 1
+
+# 在线启用及在线/离线共享检索策略，资源根仍在.env。
+[rag]
+# 默认关闭在线RAG，准备索引与rag extra后开启；不影响离线命令。
+enabled = false
+# vector向量 / bm25词法 / hybrid双路RRF，修改后重启。
+retrieval_mode = "vector"
+# 每路候选1–20且不小于top_k；不是最终注入数。
+candidate_k = 10
+# 最终候选/注入上限1–3，可能因预算或距离筛选减少。
+top_k = 3
+# RRF排名平滑常量1–1000，不是答案置信度。
+rrf_constant = 60
+# 本地检索等待（秒），有限正数，不控制Chat等待。
+timeout_seconds = 5
+# 检索上下文字符预算1–24000，不等于模型token窗口。
+max_context_chars = 6000
+# 距离阈值仅vector允许，须有限非负且评测标定；未标定时保持不填写。
+# max_distance = 0.3
+
+# 同会话历史摘要与输入预算，不是私人向量记忆。
+[memory.conversation]
+# 自动摘要准备开关；关闭仍保留模型输入预算校验。
+enabled = true
+# 估算上下文窗口4096–1000000 token，不得超过服务商实际能力。
+window_tokens = 16384
+# 主回复输出预留至少256 token，必须小于窗口减1024。
+output_tokens = 2048
+# 保留近期完整消息条数（不是轮数），至少1且小于trigger_messages。
+keep_messages = 12
+# 未覆盖历史触发消息条数2–64，超输入预算也可能触发摘要。
+trigger_messages = 24
+# 摘要128–2048 token且小于输入预算一半，保存正文另受字节限制。
+summary_tokens = 1024
+# 每次摘要等待（秒）大于0且不超过120，计入整轮截止。
+summary_timeout_seconds = 30
+# 每轮最多摘要批次1–4，不无限补处理积压。
+max_batches = 2
+# 历史读取页大小，至少trigger_messages且不超过128条。
+page_messages = 64
+
+# 本人结构化偏好画像，不保存私人经历。
+[memory.profile]
+# 自动提取/注入开关，关闭不影响人工管理接口。
+enabled = true
+# 单次画像提取等待（秒）大于0且不超过60。
+timeout_seconds = 10
+
+# 订单只读策略，不包含支付/写操作。
+[orders.read]
+# 全轮一次已结束瞬时只读故障重试；查空/权限/缺表不重试，仍计能力额度。
+retry_enabled = true
+# 仅模拟申请，本地单进程确认图；MySQL仍是业务结果权威。
+[approvals]
+# 是否开放准备/确认能力；禁用时不创建断点文件。
+enabled = true
+# 写图游标文件位置，建议私有目录；不是MySQL连接地址或长期记忆库。
+checkpoint_path = "data/private/agent-checkpoints.sqlite"
+# 一张预览的确认有效期（秒）；修改参数应重新准备。
+ttl_seconds = 1800
+# 用户点击后一次确定性恢复的硬限时（秒）；没有LLM调用/自动写重试。
+resume_timeout_seconds = 30
+# 终态写图游标保留天数；不删除未确认动作或MySQL业务记录。
+terminal_retention_days = 7

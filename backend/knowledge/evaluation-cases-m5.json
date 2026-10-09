@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "scope": "M5 frozen before first comparison on 2026-10-03; 20 manually annotated positives + 4 negative diagnostics; synthetic, incomplete relevance labels, not ingested",
+  "cases": [
+    {"id":"product-lines","query":"有哪些平板方案和手机产品线","expected_source":"products.md","kind":"acceptance","references":[{"source_path":"products.md","section_path":"ODMFlow 合成产品目录 / 产品线与定位","text":"约 10 英寸 Android 平板"},{"source_path":"products.md","section_path":"ODMFlow 合成产品目录 / 产品线与定位","text":"约 6 英寸 Android 智能手机"}]},
+    {"id":"kiosk-customization","query":"企业平板要做单应用 kiosk，需要向客户确认哪些需求","expected_source":"customization.md","kind":"acceptance","references":[{"source_path":"customization.md","section_path":"ODMFlow 合成定制能力与需求收集规则 / 客户可以提出哪些定制","text":"区分普通预装与受管设备，询问 MDM/EMM 提供方"},{"source_path":"customization.md","section_path":"ODMFlow 合成定制能力与需求收集规则 / 区域问题的标准问法","text":"是否必须 GMS/Google Play、MDM/kiosk？"}]},
+    {"id":"aftersales-materials","query":"售后申请需要准备哪些材料和故障信息","expected_source":"aftersales-policy.md","kind":"acceptance","references":[{"source_path":"aftersales-policy.md","section_path":"ODMFlow 合成售后受理政策 / 可咨询与可申请","text":"收集设备标识（若有）、故障现象、发生时间、复现步骤和期望处理方式"}]},
+    {"id":"model-alias","query":"OF T10 可以预装客户 App 吗","expected_source":"products.md","kind":"acceptance","references":[{"source_path":"products.md","section_path":"ODMFlow 合成产品目录 / 产品线与定位","text":"OF-T10"}]},
+    {"id":"phone-alias","query":"of-p6 手机是不是能做双SIM和eSIM","expected_source":"products.md","kind":"acceptance","references":[{"source_path":"products.md","section_path":"ODMFlow 合成产品目录 / 产品线与定位","text":"具体 4G/5G 频段、eSIM、双 SIM"}]},
+    {"id":"retail-tablet","query":"零售门店固定点位展示应该先讨论哪种设备","expected_source":"products.md","kind":"acceptance","references":[{"source_path":"products.md","section_path":"ODMFlow 合成产品目录 / 如何选择","text":"以固定点位展示、课堂或巡检为主，先讨论 OF-T10"}]},
+    {"id":"catalog-not-sku","query":"型号确定之后是不是最终SKU就确定了","expected_source":"products.md","kind":"acceptance","references":[{"source_path":"products.md","section_path":"ODMFlow 合成产品目录 / 产品线与定位","text":"型号不是最终 SKU"}]},
+    {"id":"business-scope","query":"你们的业务面向什么客户，可以提供什么服务","expected_source":"company.md","kind":"acceptance","references":[{"source_path":"company.md","section_path":"ODMFlow 合成企业服务介绍 / 服务定位","text":"面向有品牌化或企业部署需求的 B2B 客户"}]},
+    {"id":"synthetic-company","query":"ODMFlow是真实公司的官网吗","expected_source":"company.md","kind":"acceptance","references":[{"source_path":"company.md","section_path":"ODMFlow 合成企业服务介绍","text":"不是上海昶音智能科技有限公司或任何真实公司的官网"}]},
+    {"id":"branding","query":"Logo开机画面和包装文案需要收集什么信息","expected_source":"customization.md","kind":"acceptance","references":[{"source_path":"customization.md","section_path":"ODMFlow 合成定制能力与需求收集规则 / 客户可以提出哪些定制","text":"记录素材、语言、商标授权和目标地区"}]},
+    {"id":"app-ota","query":"Android App预装和OTA更新哪些情况需要升级评估","expected_source":"customization.md","kind":"acceptance","references":[{"source_path":"customization.md","section_path":"ODMFlow 合成定制能力与需求收集规则 / 客户可以提出哪些定制","text":"系统镜像修改、兼容性/GMS 条件、系统签名权限"}]},
+    {"id":"hardware-nfc","query":"客户想加NFC扫码和电池，工程方面要评估什么","expected_source":"customization.md","kind":"acceptance","references":[{"source_path":"customization.md","section_path":"ODMFlow 合成定制能力与需求收集规则 / 客户可以提出哪些定制","text":"新器件、射频/天线、功耗、认证复测"}]},
+    {"id":"country-clarification","query":"准备卖到东南亚就够了还是要确认具体国家","expected_source":"customization.md","kind":"acceptance","references":[{"source_path":"customization.md","section_path":"ODMFlow 合成定制能力与需求收集规则 / 区域问题的标准问法","text":"不要仅记录“欧洲/东南亚”"}]},
+    {"id":"gms-certainty","query":"是不是所有型号GMS都可以直接安装，保证已认证","expected_source":"customization.md","kind":"acceptance","references":[{"source_path":"customization.md","section_path":"ODMFlow 合成定制能力与需求收集规则 / 判定措辞","text":"GMS 可直接安装"}]},
+    {"id":"presales-unknown-config","query":"不在目录的配置，售前需要确认哪些需求才能评估","expected_source":"order-policy.md","kind":"acceptance","references":[{"source_path":"order-policy.md","section_path":"ODMFlow 合成售前与模拟订单政策 / 售前路径","text":"用途、销售国家、产品形态、连接方式、数量、必选/可选功能"}]},
+    {"id":"order-minimum","query":"模拟订单申请最少需要填什么","expected_source":"order-policy.md","kind":"acceptance","references":[{"source_path":"order-policy.md","section_path":"ODMFlow 合成售前与模拟订单政策 / 模拟订单申请的边界","text":"至少需要产品线/型号、数量、目标销售国家、连接方式和配置摘要"}]},
+    {"id":"order-cancel","query":"能直接帮我取消或者修改已提交订单吗","expected_source":"order-policy.md","kind":"acceptance","references":[{"source_path":"order-policy.md","section_path":"ODMFlow 合成售前与模拟订单政策 / 模拟订单申请的边界","text":"取消/修改请求是不同的高影响动作"}]},
+    {"id":"backup-data","query":"维修平板前需要备份吗，会不会清除设备数据","expected_source":"aftersales-policy.md","kind":"acceptance","references":[{"source_path":"aftersales-policy.md","section_path":"ODMFlow 合成售后受理政策 / 可咨询与可申请","text":"不能保证实际维修不会清除数据"}]},
+    {"id":"refund-not-approved","query":"我提交了退货申请是不是已经批准退款了","expected_source":"aftersales-policy.md","kind":"acceptance","references":[{"source_path":"aftersales-policy.md","section_path":"ODMFlow 合成售后受理政策 / 可咨询与可申请","text":"提交申请不代表符合条件，也不代表批准、退款或已生成物流单"}]},
+    {"id":"cannot-boot","query":"你好，我的平板无法开机，你们能保证免费维修吗","expected_source":"aftersales-policy.md","kind":"acceptance","references":[{"source_path":"aftersales-policy.md","section_path":"ODMFlow 合成售后受理政策 / 高风险边界","text":"自称已经诊断硬件故障或保证免费维修"}]},
+    {"id":"unknown-warranty","query":"你们保证保修几年","kind":"unknown-policy-diagnostic"},
+    {"id":"unknown-price","query":"一百台平板多少钱，保证三天交货吗","kind":"unknown-policy-diagnostic"},
+    {"id":"greeting","query":"你好，今天心情怎么样","kind":"unrelated-diagnostic"},
+    {"id":"weather","query":"今天北京下雨吗","kind":"unrelated-diagnostic"}
+  ]
+}

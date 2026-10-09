@@ -1,0 +1,63 @@
+[project]
+name = "odmflow"
+version = "0.1.0"
+description = "Conversational Android ODM agent with controlled business workflows"
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.14,<3.15"
+dependencies = [
+    "alembic>=1.20,<1.21",
+    "argon2-cffi>=25.1,<26",
+    "fastapi",
+    # OpenAI 兼容模型 SDK 会传递依赖 httpx2；显式保留 socks 扩展以支持本地 SOCKS 代理。
+    "httpx2[socks]>=2,<3",
+    "langchain>=1,<2",
+    "langchain-openai>=1,<2",
+    # 已有框架运行时的直接类型依赖；沿用当前解析版本，不升级整套框架。
+    "langgraph==1.2.12",
+    # 本地原生暂停恢复；普通启动可用，不要求另起服务。
+    "langgraph-checkpoint-sqlite==3.1.1",
+    "pymysql>=1.1,<2",
+    "sqlalchemy>=2.0,<2.1",
+    "uvicorn[standard]",
+]
+
+[project.optional-dependencies]
+# 本地 RAG 资源准备与后续知识模块使用；普通后端启动不强制安装。
+rag = [
+    "chromadb==1.5.9",
+    "fastembed==0.8.1",
+    "langchain-text-splitters==1.1.2",
+    "pyyaml==6.0.3",
+    "rank-bm25==0.2.2",
+]
+
+[dependency-groups]
+dev = [
+    "httpx",
+    "mypy",
+    "pytest",
+    "ruff",
+]
+
+[build-system]
+requires = ["uv_build>=0.12.13,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv]
+link-mode = "copy"
+
+[tool.alembic]
+script_location = "%(here)s/migrations"
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.14"
+strict = true
+packages = ["odmflow"]

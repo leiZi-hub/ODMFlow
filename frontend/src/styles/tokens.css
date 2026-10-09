@@ -1,0 +1,12 @@
+/* 用途：定义浅色 ODMFlow 身份与对话工作区令牌；边界：不表达业务权限。 */
+:root {
+  color-scheme: light;
+  --color-bg: #f7f7f5;
+  --color-panel: #ffffff;
+  --color-sidebar: #f3f3f1;
+  --color-text: #202124;
+  --color-muted: #686b70;
+  --color-border: #e6e6e3;
+  --color-accent: #3447a3;
+  --color-error: #a92331;
+}
